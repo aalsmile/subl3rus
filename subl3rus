@@ -1,0 +1,16 @@
+#!/bin/sh
+#name: MySublimeText3RusInstall
+TMPPATH="$HOME/Downloads/tmp_SublimeText3"
+DEB="sublime-text_build-3103_amd64.deb"
+mkdir -p "$TMPPATH"
+cd "$TMPPATH"
+wget -q "https://download.sublimetext.com/$DEB"
+sudo dpkg -i "$DEB"
+wget -q https://github.com/Dimox/SublimeText3RussianMenu/archive/master.zip
+unzip -qq master.zip "*.sublime-menu"
+rm -r "SublimeText3RussianMenu-master/backup"
+mkdir -p "$HOME/.config/sublime-text-3/Packages/Default"
+mv ./SublimeText3RussianMenu-master/* $HOME/.config/sublime-text-3/Packages/Default
+cd ..
+rm -r "$TMPPATH"
+subl
